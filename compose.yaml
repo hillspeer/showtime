@@ -1,0 +1,24 @@
+version: '3'
+services:
+  app:
+    image: st:3
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+    networks:
+      - showtime
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - showtime
+
+networks:
+  showtime:
+    driver: bridge
